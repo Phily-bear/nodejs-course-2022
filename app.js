@@ -1,3 +1,12 @@
-for (let i = 0; i < 10; i++) {
-  console.log(i);
-}
+const http = require("http");
+
+const server = http.createServer((req, res) => {
+  res.writeHead(200, { "Content-Type": "application/json" });
+  res.end(
+    JSON.stringify({
+      data: "Hello World!",
+    })
+  );
+});
+
+server.listen(3000);

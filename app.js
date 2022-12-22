@@ -1,25 +1,40 @@
-console.log(__dirname);
-console.log(__filename);
-// __dirname和__filename是全局可用对象，就是在任何模块都可用，但是不是属于global的对象
-global.console.log("asdf"); // console就是全局对象
-console.log("asdf");
+const http = require("http");
+const fs = require("fs");
+const PORT = 3000;
+const server = http.createServer((req, res) => {
+  if (req.url === "/") {
+    res.writeHead(200, { "Content-Type": "text/html" });
+    fs.readFile("pages/home.html", "utf-8", (err, data) => {
+      if (err) throw err;
+      res.write(data);
+      res.end();
+    });
+  } else if (req.url === "/about") {
+    res.writeHead(200, { "Content-Type": "text/html" });
+    fs.readFile("pages/about.html", "utf-8", (err, data) => {
+      console.log(err, data);
+      if (err) throw err;
+      res.write(data);
+      res.end();
+    });
+  } else if (req.url === "/create-file") {
+    res.writeHead(200, { "Content-Type": "text/html" });
+    const data = "<h1>This is a test file!</h1>";
+    fs.appendFile("temp/test.html", data, (err) => {
+      if (err) throw err;
+      res.write("file is created");
+      res.end();
+    });
+  } else {
+    res.writeHead(404, { "Content-Type": "text/html" });
+    fs.readFile("pages/404.html", "utf-8", (err, data) => {
+      console.log(err, data);
+      if (err) throw err;
+      res.write(data);
+      res.end();
+    });
+  }
+});
 
-// const Circle = require("./circle");
-
-// const circle = new Circle();
-
-// console.log(circle.area(5));
-// console.log(circle.circumference(7));
-
-// const http = require("http");
-
-// const server = http.createServer((req, res) => {
-//   res.writeHead(200, { "Content-Type": "application/json" });
-//   res.end(
-//     JSON.stringify({
-//       data: "Hello World!",
-//     })
-//   );
-// });
-
-// server.listen(3000);
+console.log(`Server is running at http://localhost:${PORT}`);
+server.listen(PORT);

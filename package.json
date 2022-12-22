@@ -1,0 +1,30 @@
+{
+  "name": "nodejs-course-2022",
+  "version": "1.0.0",
+  "description": "这是 nodejs 和 express 的学习项目",
+  "main": "app.js",
+  "scripts": {
+    "dev": "nodemon main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wanliu2021/nodejs-course-2022.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wanliu2021/nodejs-course-2022/issues"
+  },
+  "homepage": "https://github.com/wanliu2021/nodejs-course-2022#readme",
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "body-parser": "^1.20.1",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.0",
+    "mongodb": "^4.13.0",
+    "mongoose": "^6.8.1",
+    "nodemon": "^2.0.20",
+    "pug": "^3.0.2"
+  }
+}
